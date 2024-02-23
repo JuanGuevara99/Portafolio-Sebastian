@@ -516,6 +516,22 @@ span {
 }
 
 
+/*============================== SECCIÓN CONTACTO ================================*/
+.contact__content {
+    margin-bottom: 3rem;
+}
+
+.contact__title__h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5rem;
+    color: var(--second-color);
+    font-size: var(--h3-font-size);
+}
+
+
+
 /*======================= SCROLL BAR ====================*/
 ::-webkit-scrollbar{
     width: 8px;
