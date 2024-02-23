@@ -518,7 +518,7 @@ span {
 
 /*============================== SECCIÓN CONTACTO ================================*/
 .contact__content {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
 }
 
 .contact__title__h3 {
@@ -528,6 +528,43 @@ span {
     column-gap: .5rem;
     color: var(--second-color);
     font-size: var(--h3-font-size);
+    margin-bottom: 2.5rem;
+}
+
+.contact__title__h3 i {
+    font-size: var(--small-font-size);
+    font-weight: initial;
+}
+
+.contact__info,
+.contact__data,
+.contact__form {
+    display: grid;
+}
+
+.contact__info {
+    row-gap: 2rem;
+}
+
+
+.contact__data {
+    row-gap: .60rem;
+}
+
+.contact__data-title {
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.contact__data-info {
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+}
+
+.contact__button {
+    width: max-content;
+    column-gap: .5rem;
 }
 
 
