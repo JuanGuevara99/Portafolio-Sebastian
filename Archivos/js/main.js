@@ -53,3 +53,49 @@ function scrollHeader() {
 // Escucha el evento de scroll en la ventana y ejecuta la función 'scrollHeader' cuando ocurre
 window.addEventListener('scroll', scrollHeader)
 
+
+
+
+
+/*============================ CONTACTO ===========================*/
+document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.getElementById('contact-form');
+    const contactName = document.getElementById('contact-name');
+    const contactEmail = document.getElementById('contact-email');
+    const contactAsunto = document.getElementById('contact-asunto');
+    const contactMessage = document.getElementById('contact-message');
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        console.log("Enviando correo...");
+
+        console.log("Nombre:", contactName.value);
+        console.log("Correo:", contactEmail.value);
+        console.log("Asunto:", contactAsunto.value);
+
+        if (contactName.value === '' || contactEmail.value === '' || contactAsunto.value === '') {
+            contactMessage.classList.remove('color-blue');
+            contactMessage.classList.add('color-red');
+            contactMessage.textContent = '* Llene todos los campos 📩';
+        } else {
+            emailjs.sendForm('service_2y0bg5q', 'template_ojm3kg4', '#contact-form', 'q51fO84GGhCgrWrpw')
+                .then(() => {
+                    contactMessage.classList.add('color-blue');
+                    contactMessage.textContent = 'Mensaje enviado ✅';
+
+                    setTimeout(() => {
+                        contactMessage.textContent = '';
+                    }, 5000);
+                })
+                .catch(error => {
+                    console.error('Error al enviar el formulario:', error);
+                    contactMessage.classList.remove('color-blue');
+                    contactMessage.classList.add('color-red');
+                    contactMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor, inténtelo de nuevo más tarde.';
+                });
+        }
+    }
+
+    contactForm.addEventListener('submit', sendEmail);
+});
