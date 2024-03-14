@@ -54,48 +54,122 @@ function scrollHeader() {
 window.addEventListener('scroll', scrollHeader)
 
 
+/*=========================== CONTACTO ========================= */
+const form = document.querySelector('form');
+const nombrePersona = document.getElementById("name");
+const correoElectronico = document.getElementById("email");
+const numeroCelular = document.getElementById("phone");
+const asunto = document.getElementById("subject");
+const mensaje = document.getElementById("message");
+
+/*-- Envio de mensaje al correo electrónico --*/
+function sendEmail() {
+    const bodyMessage = `Nombre: ${nombrePersona.value}<br> Correo electrónico: ${correoElectronico.value}<br> 
+    Numero Celular: ${numeroCelular.value}<br> Mensaje: ${mensaje.value}<br>`;
 
 
-
-/*============================ CONTACTO ===========================*/
-document.addEventListener('DOMContentLoaded', function () {
-    const contactForm = document.getElementById('contact-form');
-    const contactName = document.getElementById('contact-name');
-    const contactEmail = document.getElementById('contact-email');
-    const contactAsunto = document.getElementById('contact-asunto');
-    const contactMessage = document.getElementById('contact-message');
-
-    const sendEmail = (e) => {
-        e.preventDefault();
-
-        console.log("Enviando correo...");
-
-        console.log("Nombre:", contactName.value);
-        console.log("Correo:", contactEmail.value);
-        console.log("Asunto:", contactAsunto.value);
-
-        if (contactName.value === '' || contactEmail.value === '' || contactAsunto.value === '') {
-            contactMessage.classList.remove('color-blue');
-            contactMessage.classList.add('color-red');
-            contactMessage.textContent = '* Llene todos los campos 📩';
-        } else {
-            emailjs.sendForm('service_2y0bg5q', 'template_ojm3kg4', '#contact-form', 'q51fO84GGhCgrWrpw')
-                .then(() => {
-                    contactMessage.classList.add('color-blue');
-                    contactMessage.textContent = 'Mensaje enviado ✅';
-
-                    setTimeout(() => {
-                        contactMessage.textContent = '';
-                    }, 5000);
-                })
-                .catch(error => {
-                    console.error('Error al enviar el formulario:', error);
-                    contactMessage.classList.remove('color-blue');
-                    contactMessage.classList.add('color-red');
-                    contactMessage.textContent = 'Hubo un error al enviar el mensaje. Por favor, inténtelo de nuevo más tarde.';
+    Email.send({
+        Host: "smtp.elasticemail.com",
+        Username: "juanguevara1121@gmail.com",
+        Password: "65128E8A1150451125F6AB273346DA23B6CF",
+        To: 'juanguevara1121@gmail.com',
+        From: "juanguevara1121@gmail.com",
+        Subject: asunto.value,
+        Body: bodyMessage
+    }).then(
+        message => {
+            if (message == "OK")
+                Swal.fire({
+                    title: "Bien!",
+                    text: "Su mensaje fue enviado",
+                    icon: "success"
                 });
+                // Limpiar los campos después de enviar el mensaje
+                clearFields();
         }
+    );
+}
+
+/*-- Validar que los campos no esten vacios --*/
+function checkInputs() {
+    const items = document.querySelectorAll(".item");
+
+    for (const item of items) {
+        if (item.value == "") {
+            item.classList.add("error");
+            item.parentElement.classList.add("error");
+        }
+
+        if (items[1].value != "") {
+            checkEmail(correoElectronico);
+        }
+
+        items[1].addEventListener("keyup", () => {
+            checkEmail(correoElectronico);
+        });
+
+        item.addEventListener("keyup", () => {
+            if (item.value != "") {
+                item.classList.remove("error");
+                item.parentElement.classList.remove("error");
+            }
+            else {
+                item.classList.add("error");
+                item.parentElement.classList.add("error");
+            }
+        });
     }
 
-    contactForm.addEventListener('submit', sendEmail);
+    // Llamar a sendEmail() solo si todos los campos están completos y válidos
+    const errorInputs = document.querySelectorAll(".error");
+    if (errorInputs.length === 0) {
+        sendEmail();
+    }
+}
+
+function checkEmail(emailInput) {
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const errorTxtEmail = document.querySelector('.error-txt.email');
+
+    if (!emailInput.value.match(emailRegex)) {
+        emailInput.classList.add("error");
+        emailInput.parentElement.classList.add("error");
+
+        if (emailInput.value != "") {
+            errorTxtEmail.innerText = "(*) Introduzca una dirección de correo electrónico válida";
+        }
+        else {
+            errorTxtEmail.innerText = "(*) Espacio correo en blanco";
+        }
+
+    }
+    else {
+        emailInput.classList.remove("error");
+        emailInput.parentElement.classList.remove("error");
+        errorTxtEmail.innerText = ""; // Limpiar el texto de error si el correo es válido
+    }
+}
+
+function clearFields() {
+    nombrePersona.value = "";
+    correoElectronico.value = "";
+    numeroCelular.value = "";
+    asunto.value = "";
+    mensaje.value = "";
+}
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    checkInputs();
+});
+
+/*--Validar que los campos esten completos para enviar el mensaje --*/
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    checkInputs();
+    // Ahora, después de verificar los campos, si no hay errores, envía el correo
+    const errorInputs = document.querySelectorAll(".error");
+    if (errorInputs.length === 0) {
+        sendEmail();
+    }
 });

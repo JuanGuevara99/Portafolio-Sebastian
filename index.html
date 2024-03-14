@@ -72,7 +72,7 @@
         <!--================ Sección Inicio =======================-->
         <section class="home container" id="home">
             <h2 class="section__title">INICIO</h2>
-            <div class="profile__container grid">
+            <div class="profile__container">
                 <div class="profile__data">
                     <div class="profile__border">
                         <div class="profile__perfil">
@@ -231,7 +231,7 @@
         <!--================ Sección Habilidades =======================-->
         <section class="skills container section" id="skills">
             <h2 class="section__title">HABILIDADES</h2>
-            <div class="skills__container grid section_border">
+            <div class="skills__container section_border">
                 <!-- Habilidad 1 -->
                 <div class="skills__content">
                     <h3 class="skills__title">
@@ -395,61 +395,43 @@
         <!--================ Sección contáctame =======================-->
         <section class="contact section" id="contactme">
             <h2 class="section__title">CONTÁCTAME</h2>
-
-            <div class="contact__container container grid">
-                <div class="contact__content">
-                    <h3 class="contact__title__h3">
-                        <i class="ri-chat-3-line"> Para hablarme</i>
-                    </h3>
-
-                    <div class="contact__info">
-                        <div class="contact__data">
-                            <span class="contact__data-title">Email</span>
-                            <span class="contact__data-info">juanguevara1121@gmail.com</span>
+            <div class="contact__container">
+                <form>
+                    <div class="input-box">
+                        <div class="input-field field">
+                            <input type="text" placeholder="Nombre" id="name" class="item" autocomplete="off">
+                            <div class="error-txt">(*) Espacio nombre en blanco</div>
                         </div>
-
-                        <div class="contact__data">
-                            <span class="contact__data-title">Whatsapp</span>
-                            <span class="contact__data-info">+57 3227263021</span>
-
-                            <a href="https://wa.link/vwwxna" target="_blank" class="contact__button">
-                                Escríbeme <i class="ri-arrow-right-line"></i>
-                            </a>
+    
+                        <div class="input-field field">
+                            <input type="text" placeholder="Correo electrónico" id="email" class="item" autocomplete="off">
+                            <div class="error-txt email">(*) Espacio correo en blanco</div>
                         </div>
                     </div>
-                </div>
-
-                <div class="contact__content">
-                    <h3 class="contact__title__h3">
-                        <i class="ri-mail-send-line"> Deje su mensaje</i>
-                    </h3>
-
-                    <form action="" class="contact__form" id="contact-form">
-                        <div class="contact__form-div">
-                            <label class="contact__form-tag">Nombre</label>
-                            <input type="text" name="user_name" required placeholder="Escriba su nombre"
-                                class="contact__form-input" id="contact-name">
+    
+                    <div class="input-box">
+                        <div class="input-field field">
+                            <input type="text" placeholder="Numero de celular" id="phone" class="item" autocomplete="off">
+                            <div class="error-txt">(*) Espacio celular en blanco</div>
                         </div>
-
-                        <div class="contact__form-div">
-                            <label class="contact__form-tag">Correo</label>
-                            <input type="email" name="user_email" required placeholder="Escriba su correo"
-                                class="contact__form-input" id="contact-email">
+    
+                        <div class="input-field field">
+                            <input type="text" placeholder="Asunto" id="subject" class="item" autocomplete="off">
+                            <div class="error-txt">(*) Espacio asunto en blanco</div>
                         </div>
+                    </div>
+    
+                    <div class="textarea-field field">
+                        <textarea name="" id="message" cols="30" rows="10" placeholder="Deje su mensaje" class="item"
+                            autocomplete="off"></textarea>
+                        <div class="error-txt">(*) Espacio mensaje en blanco</div>
+                    </div>
+    
+                    <button type="submit">Enviar mensaje</button>
+                </form>
+    
 
-                        <div class="contact__form-div contact__form-area">
-                            <label class="contact__form-tag">Asunto</label>
-                            <textarea name="user_asunto" placeholder="Deje su mensaje" id="contact-asunto"
-                                class="contact__form-input"></textarea>
-                        </div>
 
-                        <p class="contact__message" id="contact-message"></p>
-
-                        <button type="submit" class="contact__button button">
-                            Enviar <i class="ri-send-plane-line"></i>
-                        </button>
-                    </form>
-                </div>
             </div>
         </section>
     </main>

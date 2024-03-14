@@ -519,125 +519,99 @@ span {
 /*============================== SECCIÓN CONTACTO ================================*/
 .contact {
     background: var(--color-grey);
+    text-align: center;
 }
 
-.contact__content {
-    margin-bottom: 4rem;
-}
-
-.contact__title__h3 {
+.contact__container {
+    position: relative;
+    min-width: 100vh;
+    padding: 50px 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    column-gap: .5rem;
-    color: var(--second-color);
-    font-size: var(--h3-font-size);
-    margin-bottom: 2.5rem;
+    flex-direction: column;
 }
 
-.contact__title__h3 i {
-    font-size: var(--small-font-size);
-    font-weight: initial;
+.contact__container form {
+    max-width: 1200px;
+    text-align: center;
+    margin-top: 30px;
 }
 
-.contact__info,
-.contact__data,
-.contact__form {
-    display: grid;
+.contact form  .input-box {
+    display: flex;
+    justify-content: space-between;
 }
 
-.contact__info {
-    row-gap: 2rem;
+.input-box .input-field {
+    width: 15.5%;
 }
 
-
-.contact__data {
-    row-gap: .60rem;
-}
-
-.contact__data-title {
+.field .item {
+    padding: 18px;
+    background: transparent;
+    border: 2px solid var(--first-color);
+    outline: none;
+    border-radius: 6px;
     font-size: var(--normal-font-size);
     color: var(--text-color);
-    font-weight: 600;
+    margin: 12px 0;
 }
 
-.contact__data-info {
-    font-size: var(--small-font-size);
-    color: var(--title-color);
+/*-- Estilo validar que los campos no esten vacios --*/
+.field.error .item {
+    border-color: red;
 }
 
-.contact__button {
-    width: max-content;
-    column-gap: .5rem;
+.field .item::placeholder {
+    color: rgb(105, 119, 131, .4);
 }
 
-.contact__form {
-    position: relative;
-    row-gap: 2rem;
-}
-
-.contact__form-div {
-    position: relative;
-    height: 4rem;
-}
-
-.contact__form-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 2px solid var(--text-color);
-    border-radius: 1.5rem;
-    padding: 1.5rem;
-    font-size: var(--normal-font-size);
-    background: none;
-    outline: none;
-    z-index: 1;
-}
-
-.contact__form-tag {
-    position: absolute;
-    top: -1rem;
-    left: 1.25rem;
-    z-index: 10;
-    background: var(--color-grey);
-    color: var(--title-color);
-    padding: .30rem;
-}
-
-.contact__form-area {
-    height: 10rem;
-}
-
-.contact__form-area textarea {
+.contact__form .textarea-field .item {
     resize: none;
 }
 
-.contact__form .contact__button {
+.contact__form button {
+    padding: 12px 32px;
+    background: rgb(0, 144, 155);
     border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgb(0, 144, 155);
+    font-size: 16px;
+    color: #333;
+    letter-spacing: 1px;
+    font-weight: 600;
     cursor: pointer;
+    margin-top: 20px;
+    transition: .5s;
 }
 
-.contact__form .contact__button i {
-    font-size: 1rem;
-    font-weight: initial;
+.contact__form button:hover {
+    box-shadow: none;
+    color: aliceblue;
 }
 
-.contact__message {
-    font-size: var(--small-font-size);
-    position: absolute;
-    bottom: 4.5rem;
-    left: 1.5rem;
+/*-- Espacio en blanco --*/
+.field .error-txt {
+    font-size: 14.5px;
+    color: red;
+    text-align: left;
+    margin: -5px 0 10px;
+    display: none;
 }
 
-/*Validar envio de correo*/
-.color-red{
-    color: hsl(4, 71%, 50%);
+/*-- Estilo validar que los campos no esten vacios --*/
+.field.error .error-txt {
+    display: block;
 }
 
-.color-blue{
-    color: hsl(207, 56%, 45%);
+.contact__form .textarea-field .item {
+    resize: none;
+}
+
+.contact__form .textarea-field .error-txt {
+    margin-top: -10ox;
 }
 
 /*======================= SCROLL BAR ====================*/
